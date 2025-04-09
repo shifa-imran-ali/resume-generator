@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder | Resume Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+</head>
+<body>
+    <i class="fas fa-file-alt floating-resume resume-icon1" style="font-size: 60px;"></i>
+    <i class="fas fa-briefcase floating-resume resume-icon2" style="font-size: 80px;"></i>
+    <i class="fas fa-graduation-cap floating-resume resume-icon3" style="font-size: 50px;"></i>
+    <i class="fas fa-trophy floating-resume resume-icon4" style="font-size: 70px;"></i>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-file-contract"></i>
+                ResumePro
+            </div>
+        </div>
+        
+        <h1>Build Your Professional Resume</h1>
+        
+        <form id="resumeForm">
+            <h3 class="section-title">Personal Information</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+1 (123) 456-7890" required>
+                    <i class="fas fa-phone input-icon"></i>
+                </div>
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    <i class="fab fa-linkedin input-icon"></i>
+                </div>
+            </div>
+            
+            <h3 class="section-title">Professional Details</h3>
+            <div class="form-group">
+                <label for="summary">Professional Summary</label>
+                <textarea id="summary" placeholder="Experienced professional with 5+ years in..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="skills">Key Skills (comma separated)</label>
+                <textarea id="skills" placeholder="Project Management, JavaScript, UI/UX Design..." required></textarea>
+            </div>
+            
+            <h3 class="section-title">Work Experience</h3>
+            <div id="experienceFields">
+                <div class="experience-entry form-grid">
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="jobTitle[]" placeholder="Senior Developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" name="company[]" placeholder="Tech Corp Inc." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="month" name="startDate[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="month" name="endDate[]">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2">
+                        <label>Description</label>
+                        <textarea name="jobDescription[]" placeholder="Your responsibilities and achievements..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="addExperience()" style="margin-bottom: 2rem;">
+                <i class="fas fa-plus"></i> Add Another Experience
+            </button>
+            
+            <h3 class="section-title">Education</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Degree</label>
+                    <input type="text" name="degree" placeholder="Bachelor of Science" required>
+                </div>
+                <div class="form-group">
+                    <label>University</label>
+                    <input type="text" name="university" placeholder="State University" required>
+                </div>
+                <div class="form-group">
+                    <label>Graduation Year</label>
+                    <input type="number" name="graduationYear" placeholder="2020" min="1900" max="2099" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn" style="margin-top: 2rem;">
+                <i class="fas fa-file-pdf"></i> Generate My Resume
+            </button>
+        </form>
+    </div>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Resume Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Floating Resume Icons -->
+    <i class="fas fa-file-alt floating-resume resume-icon1" style="font-size: 60px;"></i>
+    <i class="fas fa-briefcase floating-resume resume-icon2" style="font-size: 80px;"></i>
+    <i class="fas fa-graduation-cap floating-resume resume-icon3" style="font-size: 50px;"></i>
+    <i class="fas fa-trophy floating-resume resume-icon4" style="font-size: 70px;"></i>
+    
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-file-contract"></i>
+            ResumePro
+        </div>
+        <h2>Welcome Back!</h2>
+        <p>Login to craft your perfect resume</p>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" id="email" required>
+                <i class="fas fa-envelope input-icon"></i>
+                <div id="emailError" class="error">Please enter a valid email</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••" required minlength="6">
+                <i class="fas fa-lock input-icon"></i>
+                <div id="passwordError" class="error">Password must be at least 6 characters</div>
+                <a href="#" class="forgot-link" id="reset">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn" id="login">
+                <i class="fas fa-rocket" style="margin-right: 8px;"></i> Launch Your Resume
+            </button>
+            
+            <div class="social-login">
+                Or signup with
+                <i class="fab fa-google" ></i>
+                <button id="google-btn" class="google-btn">google</button>
+            </div>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="./signup.html">Sign up now</a>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="./app.js"></script>
+    </body>
+</html>

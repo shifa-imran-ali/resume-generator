@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Resume | Resume Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./resume.css">
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Floating Resume Icons -->
+    <i class="fas fa-file-alt floating-resume resume-icon1" style="font-size: 60px;"></i>
+    <i class="fas fa-briefcase floating-resume resume-icon2" style="font-size: 80px;"></i>
+    <i class="fas fa-graduation-cap floating-resume resume-icon3" style="font-size: 50px;"></i>
+    <i class="fas fa-trophy floating-resume resume-icon4" style="font-size: 70px;"></i>
+
+    <div class="resume-container">
+        <div class="header">
+            <h1 class="name" id="name">John Doe</h1>
+            <div class="contact-info">
+                <span id="email"><i class="fas fa-envelope"></i> john@example.com</span>
+                <span id="phone"><i class="fas fa-phone"></i> +1 (123) 456-7890</span>
+                <span id="linkedin"><i class="fab fa-linkedin"></i> linkedin.com/in/johndoe</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-user-tie"></i> Professional Summary</h2>
+            <p id="summary"></p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Skills</h2>
+            <div class="skills-list" id="skills"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
+            <div id="experience"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div id="education"></div>
+        </div>
+
+        <div class="actions">
+            <button class="btn" onclick="window.print()">
+                <i class="fas fa-print"></i> Print Resume
+            </button>
+            <a href="dashboard.html" class="btn">
+                <i class="fas fa-edit"></i> Edit Resume
+            </a>
+            <button class="btn" id="logout-btn">Logout</button>
+        </div>
+    </div>
+
+    <script>
+
+        const resumeData = JSON.parse(localStorage.getItem('resumeData'));
+        if (!resumeData) {
+            alert('No resume data found! Please fill the form first.');
+            window.location.href = 'dashboard.html';
+        }
+        document.getElementById('name').textContent = resumeData.personal.name;
+        document.getElementById('email').innerHTML = `<i class="fas fa-envelope"></i> ${resumeData.personal.email}`;
+        document.getElementById('phone').innerHTML = `<i class="fas fa-phone"></i> ${resumeData.personal.phone}`;
+        if (resumeData.personal.linkedin) {
+            document.getElementById('linkedin').innerHTML = `<i class="fab fa-linkedin"></i> ${resumeData.personal.linkedin.replace('https://', '').replace('www.', '')}`;
+        } else {
+            document.getElementById('linkedin').style.display = 'none';
+        }
+        document.getElementById('summary').textContent = resumeData.summary || 'No summary provided';
+        const skillsContainer = document.getElementById('skills');
+        resumeData.skills.forEach(skill => {
+            const skillElement = document.createElement('span');
+            skillElement.className = 'skill';
+            skillElement.textContent = skill;
+            skillsContainer.appendChild(skillElement);
+        });
+        const experienceContainer = document.getElementById('experience');
+        resumeData.experience.forEach(exp => {
+            const expElement = document.createElement('div');
+            expElement.className = 'experience-item';
+            expElement.innerHTML = `
+                    <div class="job-title">${exp.jobTitle}</div>
+                    <div class="company">${exp.company}</div>
+                    <div class="date">${formatDate(exp.startDate)} - ${exp.endDate ? formatDate(exp.endDate) : 'Present'}</div>
+                    <p>${exp.description || ''}</p>
+                `;
+            experienceContainer.appendChild(expElement);
+        });
+        const educationContainer = document.getElementById('education');
+        const edu = resumeData.education;
+        const eduElement = document.createElement('div');
+        eduElement.className = 'education-item';
+        eduElement.innerHTML = `
+                <div class="job-title">${edu.degree}</div>
+                <div class="company">${edu.university}</div>
+                <div class="date">Graduated: ${edu.graduationYear}</div>
+            `;
+        educationContainer.appendChild(eduElement);
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+        }
+    </script>
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
